@@ -6,13 +6,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyATnB7DHZp1Gksl-BIcO-itLJzOJ9hX4bw",
-  authDomain: "fitness-pro-aa6e0.firebaseapp.com",
-  projectId: "fitness-pro-aa6e0",
-  storageBucket: "fitness-pro-aa6e0.firebasestorage.app",
-  messagingSenderId: "584006295908",
-  appId: "1:584006295908:web:559e50b5b20b02b7c75a71",
-  measurementId: "G-XZB0Y6N8CD"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -20,8 +20,8 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
 // Conditionally Initialize Auth for Web and Mobile
 const auth = initializeAuth(app, {
-  persistence: Platform.OS === 'web' 
-    ? browserLocalPersistence 
+  persistence: Platform.OS === 'web'
+    ? browserLocalPersistence
     : getReactNativePersistence(AsyncStorage)
 });
 
